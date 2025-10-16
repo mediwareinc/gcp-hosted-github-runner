@@ -12,13 +12,16 @@ jobs:
       - name: Setup go environment
         uses: actions/setup-go@v5
         with:
-          go-version-file: "./go.mod"
+          go-version-file: "./runner-autoscaler/go.mod"
 
       - name: Install dependencies
+        working-directory: runner-autoscaler
         run: go get .
 
       - name: Build
+        working-directory: runner-autoscaler
         run: go build -v ./...
 
       - name: Test
+        working-directory: runner-autoscaler
         run: go test -v ./...
